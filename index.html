@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Akshay Reddeppa Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style>
+/* Layout: mobile-first single column. Off-white canvas (60%), white cards with cool-gray borders and slate text (30%), royal blue for actions and numbers (10%). Two fonts only. */
+:root {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --fg: #0F172A;
+  --muted: #475569;
+  --line: #E2E8F0;
+  --accent: #1D4ED8;
+  --accent-dark: #1E40AF;
+  --accent-tint: #EFF6FF;
+  --accent-fg: #FFFFFF;
+  --teal: #0D9488;
+  --font-head: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  padding-block: 0 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px;
+}
+.skip { position: absolute; left: -9999px; top: 0; background: var(--accent); color: var(--accent-fg); padding: 10px 14px; border-radius: 0 0 6px 6px; z-index: 5; }
+.skip:focus { left: 16px; }
+.page { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+main { display: flex; flex-direction: column; gap: 64px; }
+h1, h2, h3 { font-family: var(--font-head); margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(26px, 4.4vw, 36px); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 18px; line-height: 1.3; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-head); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin: 0; }
+.head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.head .lede { color: var(--muted); max-width: 60ch; }
+.hint { font-size: 13px; color: var(--muted); }
+
+/* header */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; justify-content: space-between; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.hdr-actions { display: flex; gap: 8px; order: 2; }
+.brand { order: 1; }
+.nav { order: 3; flex: 1 1 100%; flex-wrap: nowrap; overflow-x: auto; gap: 4px 18px; align-items: center; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a { white-space: nowrap; }
+.btn.sm { padding: 10px 14px; font-size: 13.5px; }
+.btn.hdr-btn { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); font-weight: 600; white-space: nowrap; }
+.btn.hdr-btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--accent-fg); }
+.viewer { position: fixed; inset: 0; z-index: 60; background: rgba(15,23,42,0.6); display: flex; align-items: stretch; justify-content: center; padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); }
+.viewer[hidden] { display: none; }
+.viewer-box { background: var(--surface); border-radius: 12px; width: 100%; max-width: 900px; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); }
+.viewer-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.viewer-bar b { font-family: var(--font-head); font-size: 16px; margin-right: auto; }
+.viewer-body { overflow-y: auto; padding: 16px; background: var(--bg); display: flex; flex-direction: column; gap: 14px; flex: 1; min-height: 0; }
+.viewer-body img { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: #fff; }
+.mail-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+section[id] { scroll-margin-top: 130px; }
+.jump { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 25; display: flex; flex-direction: column; gap: 8px; }
+.resume-tab { width: 44px; padding: 10px 0; border-radius: 10px; background: var(--accent); color: var(--accent-fg); border: 1px solid var(--accent); display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; font: 700 10px/1 var(--font-body); letter-spacing: 0.02em; box-shadow: 0 4px 14px rgba(15,23,42,0.18); margin-bottom: 6px; }
+.resume-tab:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.resume-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.jump button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--accent); display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 14px rgba(15,23,42,0.14); padding: 0; }
+.jump button:hover { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.jump button.dim { opacity: 0.45; }
+.jump button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (min-width: 900px) {
+  .nav { order: 2; flex: 1 1 auto; justify-content: center; overflow: visible; }
+  .hdr-actions { order: 3; }
+  section[id] { scroll-margin-top: 96px; }
+}
+.brand { font-family: var(--font-head); font-weight: 800; font-size: 16px; display: inline-flex; align-items: center; gap: 10px; color: var(--fg); text-decoration: none; }
+.mark { width: 30px; height: 30px; border-radius: 6px; background: var(--accent); color: var(--accent-fg); display: inline-grid; place-items: center; font-size: 14px; font-weight: 800; }
+.nav { display: flex; flex-wrap: nowrap; align-items: center; gap: 4px 18px; font-size: 14px; }
+.nav a { text-decoration: none; color: var(--muted); padding-block: 6px; font-weight: 500; }
+.nav a:hover { color: var(--fg); }
+.nav a.cta { background: var(--accent); color: var(--accent-fg); border-radius: 6px; padding: 8px 16px; flex: none; font-weight: 600; }
+.nav a.cta:hover { background: var(--accent-dark); }
+
+.btn {
+  font: 600 15px/1 var(--font-body); padding: 14px 22px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--fg);
+  text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn:hover { border-color: var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn[disabled] { opacity: 0.6; cursor: progress; }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: center; padding-top: 16px; }
+.hero .name { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin: 0; }
+.hero h1 { font-size: clamp(30px, 5.4vw, 50px); line-height: 1.12; font-weight: 800; letter-spacing: -0.02em; margin-top: 12px; }
+.hero h1 span { color: var(--accent); }
+.role { margin-top: 16px; font-size: 18px; color: var(--muted); max-width: 40em; }
+.summary { margin-top: 12px; max-width: 62ch; color: var(--muted); font-size: 15px; }
+.actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+.profile { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 12px 32px rgba(29,78,216,0.07); }
+.avatar { width: 150px; height: 188px; border-radius: 16px; background: var(--accent-tint); border: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; flex: none; }
+.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.line .v a { font-weight: 500; }
+.avatar b { font-family: var(--font-head); font-size: 40px; color: var(--accent); font-weight: 800; }
+.profile .who b { display: block; font-family: var(--font-head); font-size: 18px; }
+.profile .who span { font-size: 14px; color: var(--muted); }
+.status { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; background: var(--accent-tint); color: var(--accent); border-radius: 999px; padding: 6px 12px; align-self: flex-start; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); display: inline-block; flex: none; }
+.profile dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); font-size: 14px; }
+.profile dt, .profile dd { padding-block: 10px; border-top: 1px solid var(--line); margin: 0; }
+.profile dt { color: var(--muted); padding-right: 16px; }
+.profile dd { text-align: right; font-weight: 500; overflow-wrap: anywhere; }
+
+/* highlights */
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.stat { padding: 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); margin: 0 -1px -1px 0; }
+.stat b { display: block; font-family: var(--font-head); font-weight: 800; font-size: 34px; line-height: 1; color: var(--accent); }
+.stat span { display: block; margin-top: 8px; font-size: 14px; color: var(--muted); }
+
+/* experience */
+.jobs { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+.job { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; border-left: 4px solid var(--accent); }
+.job .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; align-content: flex-start; }
+.pill { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); white-space: nowrap; }
+.pill.plain { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.job h3 { font-size: 20px; }
+.job .org { color: var(--accent); font-weight: 600; font-size: 15px; margin-top: 2px; }
+.impact { margin-top: 12px; padding: 10px 14px; background: var(--accent-tint); border-radius: 8px; font-weight: 600; font-size: 15px; color: var(--fg); }
+.job ul { margin: 12px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; max-width: 68ch; color: var(--muted); font-size: 15px; }
+
+/* case studies */
+.cases { display: flex; flex-direction: column; gap: 20px; }
+.case { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; box-shadow: 0 1px 2px rgba(15,23,42,0.04); }
+.case .domain { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.case h3 { margin-top: 6px; font-size: 20px; }
+.metric { margin-top: 16px; font-family: var(--font-head); font-weight: 800; font-size: clamp(30px, 5vw, 38px); line-height: 1.05; color: var(--accent); }
+.metric small { display: block; font-family: var(--font-body); font-weight: 400; font-size: 14px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+.tags { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.tags li { font-size: 12.5px; font-weight: 500; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; }
+.case .links { margin-top: 14px; font-size: 14px; font-weight: 600; }
+.star { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+.star div { padding-block: 12px; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; }
+.star div:first-child { border-top: 0; padding-top: 0; }
+.star dt { font-family: var(--font-head); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.star dd { margin: 0; font-size: 15px; color: var(--muted); }
+.star .res dd { color: var(--fg); font-weight: 500; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.skill { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; min-width: 0; }
+.skill h3 { font-size: 15px; margin-bottom: 12px; }
+.skill ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.skill li { font-size: 13px; font-weight: 500; padding: 4px 10px; background: var(--accent-tint); border: 1px solid var(--line); border-radius: 999px; }
+
+/* languages */
+.langs { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.lang { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.lang b { font-family: var(--font-head); font-size: 20px; font-weight: 700; }
+.lang .lv { font-size: 14px; color: var(--muted); font-weight: 500; }
+.meter { display: flex; gap: 4px; }
+.meter i { height: 6px; flex: 1; border-radius: 3px; background: var(--line); }
+.meter i.on { background: var(--accent); }
+
+/* research */
+.two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+.two h3.sec { margin-bottom: 14px; }
+.plain { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.plain li { padding-top: 14px; border-top: 1px solid var(--line); }
+.plain .sub { color: var(--muted); font-size: 14px; margin-top: 2px; }
+.plain a { overflow-wrap: anywhere; }
+
+/* contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+.lines { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
+.line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.line .k { font-size: 12px; font-weight: 600; color: var(--muted); width: 72px; text-transform: uppercase; letter-spacing: 0.08em; }
+.line .v { font-size: 15px; overflow-wrap: anywhere; min-width: 0; flex: 1 1 180px; }
+.copy { font: 600 12px var(--font-body); padding: 6px 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 4px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); color: var(--accent); }
+form { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 12px 32px rgba(29,78,216,0.06); }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label { font-size: 14px; font-weight: 600; }
+textarea { font: 400 16px/1.5 var(--font-body); color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 12px; width: 100%; min-width: 0; min-height: 150px; resize: vertical; }
+.msg { font-size: 14px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); }
+.msg.ok { border-color: var(--teal); }
+.msg textarea { margin-top: 10px; min-height: 140px; background: var(--surface); font-size: 14px; }
+.msg .btn { margin-top: 10px; padding: 10px 14px; font-size: 14px; }
+
+/* footer */
+footer { border-top: 1px solid var(--line); padding-top: 24px; display: flex; flex-direction: column; gap: 20px; }
+.foot-cta { display: flex; flex-direction: column; gap: 14px; background: var(--accent-tint); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+.foot-cta p { font-family: var(--font-head); font-weight: 700; font-size: 20px; line-height: 1.25; }
+.foot-cta .actions { margin-top: 0; }
+.foot-meta { font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: space-between; }
+
+@media (min-width: 640px) {
+  .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .langs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foot-cta { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+@media (min-width: 860px) {
+  .page { gap: 72px; }
+  main { gap: 80px; }
+  .hero { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; }
+  .job { grid-template-columns: 200px minmax(0, 1fr); gap: 12px 32px; padding: 26px 28px; }
+  .job .meta { flex-direction: column; align-items: flex-start; }
+  .case { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 32px; padding: 28px; }
+  .two, .contact { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+  .contact { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  .langs { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .lang { padding: 16px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .copy, .case, .nav a { transition: background 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s; }
+  .case:hover { box-shadow: 0 10px 28px rgba(15,23,42,0.08); }
+}
+
+.hero .eyebrow { font-size: 14px; }
+.role strong { color: var(--fg); }
+.btn.link { background: transparent; border-color: transparent; color: var(--accent); padding-inline: 8px; text-decoration: underline; text-underline-offset: 4px; }
+.btn.link:hover { border-color: transparent; color: var(--accent-dark); }
+.cred { list-style: none; padding: 16px 0 0; margin: 22px 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--muted); }
+.cred li { position: relative; }
+.cred li + li::before { content: "•"; position: absolute; left: -14px; color: var(--accent); }
+.cred strong { color: var(--fg); font-weight: 600; }
+.stat b { font-size: clamp(22px, 5.6vw, 30px); line-height: 1.1; }
+.groups { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.group { border-radius: 12px; padding: 24px; border: 1px solid var(--line); min-width: 0; }
+.group h3 { margin-bottom: 14px; }
+.group .plain li { border-top-color: rgba(15,23,42,0.1); }
+.group .plain li:first-child { border-top: 0; padding-top: 0; }
+.group .sub { color: var(--muted); }
+.g-pub { background: #EFF6FF; }
+.g-cert { background: #F0FDFA; }
+.g-edu { background: #F1F5F9; }
+.g-lead { background: #F5F3FF; }
+@media (min-width: 860px) { .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+  <header class="top">
+    <a class="brand" href="#top"><span class="mark" aria-hidden="true">AR</span>Akshay Reddeppa</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#work">Case studies</a>
+      <a href="#skills">Skills</a>
+      <a href="#languages">Languages</a>
+      <a href="#research">Research</a>
+      <a class="cta" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-h">
+      <div>
+        <p class="eyebrow">Akshay Reddeppa Pulikandla</p>
+        <h1 id="hero-h">Turning Complex Data into <span>Fast, Reliable Business Decisions</span> with AI.</h1>
+        <p class="role">I build production AI forecasting engines, custom RAG assistants, and ML pipelines that eliminate manual bottlenecks, delivering <strong>94.2% forecast accuracy</strong> and cutting <strong>2+ hour evaluation cycles down to seconds</strong>.</p>
+        <div class="actions">
+          <a class="btn primary" href="#work">View Business Case Studies</a>
+          <a class="btn js-view" href="Akshay_Reddeppa_Resume.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
+        </div>
+      </div>
+      <aside class="profile" aria-label="Profile summary">
+        <div class="avatar" id="avatar">
+          <img id="photo" alt="Portrait of Akshay Reddeppa Pulikandla in a navy blazer and white shirt" width="150" height="188" hidden>
+          <b id="initials" aria-hidden="true">AR</b>
+        </div>
+        <div class="who"><b>Akshay Reddeppa Pulikandla</b><span>AI Engineer · Chennai, India</span></div>
+        <div class="status"><span class="dot" aria-hidden="true"></span>Available for High-Impact AI Roles &amp; Advisory</div>
+        <dl>
+          <dt>Degree</dt><dd>B.Tech AI &amp; ML (CGPA 9.0)</dd>
+          <dt>Recent Lab</dt><dd>PRISME Laboratories, France</dd>
+          <dt>Core Focus</dt><dd>AI Integration, Forecasting, RAG Systems, ML Pipelines, Data Science &amp; Analytics</dd>
+        </dl>
+      </aside>
+    </section>
+
+    <section aria-label="Impact highlights">
+      <div class="stats">
+        <div class="stat"><b>2+ hrs → Seconds</b><span>Evaluation time cut in materials R&amp;D</span></div>
+        <div class="stat"><b>94.2%</b><span>One-hour-ahead industrial IoT forecast accuracy</span></div>
+        <div class="stat"><b>3x IEEE</b><span>Peer-reviewed AI &amp; forecasting publications</span></div>
+        <div class="stat"><b>France &amp; India</b><span>International R&amp;D and enterprise delivery, including Ashok Leyland and Central Institute of Brackishwater Aquaculture (CIBA) projects</span></div>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="head">
+        <p class="eyebrow">Work Experience</p>
+        <h2 id="exp-h">Enterprise &amp; Research Impact</h2>
+        <p class="lede">Measurable outcomes delivered across European research labs and Indian industrial operations.</p>
+      </div>
+      <ol class="jobs">
+        <li class="job">
+          <div class="meta"><span class="pill">11/2025 – 06/2026</span><span class="pill plain">France</span></div>
+          <div>
+            <h3>Artificial Intelligence Engineer (Intern)</h3>
+            <p class="org">PRISME Laboratories, University of Orléans</p>
+            <p class="impact">Cut material evaluation time from 2+ hours to seconds; adopted by 3+ research teams.</p>
+            <ul>
+              <li>Built and deployed a stacked ensemble ML pipeline (XGBoost, Gradient Boosting) to predict hydrogen storage capacity and kinetics in metal hydrides.</li>
+              <li>Validated predictions against physical test-bench experiments, achieving strong accuracy across 9 of 10 benchmark cases.</li>
+              <li>Engineered domain-specific features from scarce, confidential datasets and integrated SHAP explainability for R&amp;D decision-making.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="meta"><span class="pill">05/2025 – 07/2025</span><span class="pill plain">France</span></div>
+          <div>
+            <h3>Artificial Intelligence Engineer (Charpak Scholar)</h3>
+            <p class="org">INSA Centre Val de Loire (INSA Bourges)</p>
+            <p class="impact">Established the data foundation that secured funded follow-on deployment at PRISME Labs.</p>
+            <ul>
+              <li>Consolidated and standardized multi-source hydrogen-storage datasets, benchmarking Random Forest and XGBoost via 5-fold cross-validation.</li>
+              <li>Translated complex pipeline outputs into clear visual decision tools for energy scientists.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="meta"><span class="pill">04/2024 – 04/2025</span><span class="pill plain">India</span></div>
+          <div>
+            <h3>AI &amp; IoT Analytics Engineer (Intern)</h3>
+            <p class="org">Center for IoT &amp; Expert Systems, Vel Tech R&amp;D</p>
+            <p class="impact">Unified 20+ aquaculture ponds onto one live dashboard with 94.2% forecast accuracy; delivered production AI systems for Ashok Leyland and CIBA.</p>
+            <ul>
+              <li><strong>Ashok Leyland:</strong> Engineered production REST APIs, a GPT-powered operational assistant, and critical backend fixes for industrial monitoring systems.</li>
+              <li><strong>CIBA (Aquaculture):</strong> Built an end-to-end IoT and TensorFlow LSTM forecasting platform (FastAPI, SQL, Streamlit) paired with a LangChain/ChromaDB RAG assistant for real-time operator guidance.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="meta"><span class="pill">10/2024 – 03/2025</span><span class="pill plain">India</span></div>
+          <div>
+            <h3>Computer Vision &amp; ML Engineer (Intern)</h3>
+            <p class="org">Center for Biomedical Spectroscopy, Vel Tech R&amp;D</p>
+            <p class="impact">Achieved 95.5% diagnostic accuracy (98.03% specificity) in clinical image classification.</p>
+            <ul>
+              <li>Modified DenseNet201 architecture for early melanoma detection, reducing false positives through confusion-matrix optimization.</li>
+              <li>Built a hyperspectral ML pipeline (50 samples × 241 bands) estimating soil organic carbon to automate crop recommendations.</li>
+            </ul>
+          </div>
+        </li>
+        <li class="job">
+          <div class="meta"><span class="pill">07/2022 – 01/2023</span><span class="pill plain">India</span></div>
+          <div>
+            <h3>Process Optimization Trainee</h3>
+            <p class="org">Giyaan Pharma Industries Pvt. Ltd.</p>
+            <p class="impact">Reduced manufacturing rejections by ~2% and increased line throughput.</p>
+            <ul>
+              <li>Audited machine logs and camera inspection feeds to eliminate blister-cutting defects and redundant QA bottlenecks.</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <div class="head">
+        <p class="eyebrow">Case Studies</p>
+        <h2 id="work-h">Production Systems &amp; Measured ROI</h2>
+        <p class="lede">Real-world bottlenecks solved with deployable AI.</p>
+      </div>
+      <div class="cases">
+        <article class="case">
+          <div>
+            <p class="domain">Materials science · 11/2025 – 06/2026</p>
+            <h3>Hydrogen storage prediction pipeline</h3>
+            <div class="metric">2 h → seconds<small>per property evaluation, validated on 9 of 10 test-bench cases</small></div>
+            <ul class="tags"><li>XGBoost</li><li>Gradient Boosting</li><li>Stacked ensembles</li><li>SHAP</li><li>5-fold CV</li></ul>
+          </div>
+          <dl class="star">
+            <div><dt>Bottleneck</dt><dd>Each hydrogen storage evaluation took 2+ hours of lab experiments, with scarce, confidential data.</dd></div>
+            <div><dt>System built</dt><dd>A stacked ensemble pipeline with expert-built features and SHAP explainability.</dd></div>
+            <div class="res"><dt>Business impact</dt><dd>Seconds per prediction, 9 of 10 test-bench cases validated, 3+ research teams testing it.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div>
+            <p class="domain">Finance · IEEE 2026</p>
+            <h3>FAISS-optimised stock trend forecasting</h3>
+            <div class="metric">68.9 → 76.4%<small>accuracy over a vanilla LSTM</small></div>
+            <ul class="tags"><li>FAISS IVF-PQ</li><li>TensorFlow LSTM</li><li>Wilcoxon tests</li></ul>
+            <p class="links"><a href="https://doi.org/10.1109/RAEEUCCI67649.2026.11504754" target="_blank" rel="noopener">Read the IEEE paper</a></p>
+          </div>
+          <dl class="star">
+            <div><dt>Bottleneck</dt><dd>Plain LSTMs were costly to train and limited in accuracy on noisy market data.</dd></div>
+            <div><dt>System built</dt><dd>A hybrid where FAISS retrieves similar historical patterns and an LSTM learns from them.</dd></div>
+            <div class="res"><dt>Business impact</dt><dd>R² up from 0.72 to 0.83, about 25% faster training, and a 42.7% backtest return (Sharpe 1.43) against 18.3% for buy-and-hold.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div>
+            <p class="domain">Recruitment · France</p>
+            <h3>AI-powered candidate matching</h3>
+            <div class="metric">6 phases<small>roadmap presented to a recruitment firm</small></div>
+            <ul class="tags"><li>sentence-transformers</li><li>ChromaDB</li><li>pdfplumber</li><li>Gradio</li></ul>
+          </div>
+          <dl class="star">
+            <div><dt>Bottleneck</dt><dd>Recruiters screened CVs by keyword, missing strong candidates.</dd></div>
+            <div><dt>System built</dt><dd>A semantic matcher: upload a CV, get roles ranked by similarity from a persistent vector store.</dd></div>
+            <div class="res"><dt>Business impact</dt><dd>Best-fit roles in seconds, plus a 6-phase roadmap covering ATS integration, explainable matches and bias auditing.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div>
+            <p class="domain">Aquaculture · 04/2024 – 04/2025</p>
+            <h3>Shrimp farm IoT and GPT advisory platform</h3>
+            <div class="metric">94.2%<small>accuracy forecasting pH, dissolved oxygen and ORP one hour ahead</small></div>
+            <ul class="tags"><li>TensorFlow LSTM</li><li>LangChain</li><li>ChromaDB</li><li>FastAPI</li><li>Docker</li><li>Streamlit</li></ul>
+            <p class="links"><a href="https://doi.org/10.1109/IC2E365635.2025.11167875" target="_blank" rel="noopener">Read the IEEE paper</a></p>
+          </div>
+          <dl class="star">
+            <div><dt>Bottleneck</dt><dd>Operators checked each CIBA shrimp pond by hand.</dd></div>
+            <div><dt>System built</dt><dd>Sensors, an LSTM forecaster, a live dashboard and a RAG assistant that advises in plain language.</dd></div>
+            <div class="res"><dt>Business impact</dt><dd>20+ ponds on one screen, 94.2% forecast accuracy one hour ahead.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div>
+            <p class="domain">Agritech · 10/2024 – 03/2025</p>
+            <h3>Soil carbon estimation and crop recommendation</h3>
+            <div class="metric">241 bands<small>per sample across 50 hyper-spectral soil samples</small></div>
+            <ul class="tags"><li>PCA</li><li>PLSR</li><li>SVR</li><li>Random Forest</li></ul>
+          </div>
+          <dl class="star">
+            <div><dt>Bottleneck</dt><dd>Hyper-spectral soil data is high-dimensional (50 samples × 241 bands) and hard to act on.</dd></div>
+            <div><dt>System built</dt><dd>A pipeline that estimates soil organic carbon and feeds a tuned Random Forest crop recommender.</dd></div>
+            <div class="res"><dt>Business impact</dt><dd>Predicted soil carbon turns directly into crop recommendations.</dd></div>
+          </dl>
+        </article>
+        <article class="case">
+          <div>
+            <p class="domain">Healthcare · IEEE 2024</p>
+            <h3>Early melanoma detection with DenseNet201</h3>
+            <div class="metric">95.5%<small>accuracy, with 98.03% specificity</small></div>
+            <ul class="tags"><li>DenseNet201</li><li>CNN</li><li>Confusion matrix analysis</li></ul>
+            <p class="links"><a href="https://doi.org/10.1109/ICSCAN62807.2024.10894452" target="_blank" rel="noopener">Read the IEEE paper</a></p>
+          </div>
+          <dl class="star">
+            <div><dt>Bottleneck</dt><dd>Early melanoma detection needs both high sensitivity and few false positives.</dd></div>
+            <div><dt>System built</dt><dd>A modified DenseNet201 classifier, tuned through confusion-matrix analysis.</dd></div>
+            <div class="res"><dt>Business impact</dt><dd>95.5% accuracy, 95.96% sensitivity and 98.03% specificity, peer-reviewed at IEEE.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-h">
+      <div class="head">
+        <p class="eyebrow">Capabilities</p>
+        <h2 id="skills-h">Production Tech Stack</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3>AI / ML frameworks</h3><ul><li>LangChain</li><li>LangGraph</li><li>PyTorch</li><li>TensorFlow</li><li>scikit-learn</li><li>Hugging Face Transformers</li><li>sentence-transformers</li><li>Ollama</li><li>YOLO</li></ul></div>
+        <div class="skill"><h3>LLM and NLP</h3><ul><li>LLM fine-tuning</li><li>Prompt engineering</li><li>RAG</li><li>Embeddings</li><li>Semantic search</li><li>Agentic AI</li><li>Multi-agent systems</li><li>NLP</li><li>MCP</li></ul></div>
+        <div class="skill"><h3>Databases and retrieval</h3><ul><li>ChromaDB</li><li>FAISS</li><li>Vector databases</li><li>Neo4j</li><li>BM25</li><li>Hybrid retrieval</li><li>MongoDB</li><li>SQL</li></ul></div>
+        <div class="skill"><h3>MLOps and DevOps</h3><ul><li>Docker</li><li>MLflow</li><li>Google Cloud Platform</li><li>Git</li><li>GitHub</li><li>Linux (Ubuntu)</li><li>Render</li></ul></div>
+        <div class="skill"><h3>Programming</h3><ul><li>Python</li><li>C</li><li>C++</li><li>JavaScript</li></ul></div>
+        <div class="skill"><h3>Frontend and backend</h3><ul><li>FastAPI</li><li>REST APIs</li><li>Streamlit</li><li>Gradio</li><li>React</li><li>Node.js</li><li>Tailwind CSS</li></ul></div>
+        <div class="skill"><h3>Data and systems analytics</h3><ul><li>pandas</li><li>NumPy</li><li>XGBoost</li><li>Plotly</li><li>Power BI</li><li>Mechanical Systems Analysis</li></ul></div>
+        <div class="skill"><h3>Working style</h3><ul><li>Project management</li><li>Team leadership</li><li>Cross-functional collaboration</li><li>Data storytelling</li></ul></div>
+      </div>
+    </section>
+
+    <section id="languages" aria-labelledby="lang-h">
+      <div class="head">
+        <p class="eyebrow">Languages</p>
+        <h2 id="lang-h">Six languages, four at working level or above</h2>
+      </div>
+      <ul class="langs">
+        <li class="lang"><b>English</b><span class="lv">Native proficiency</span><span class="meter" role="img" aria-label="English: native-like proficiency, 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+        <li class="lang"><b>Telugu</b><span class="lv">Native</span><span class="meter" role="img" aria-label="Telugu: native, 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+        <li class="lang"><b>Tamil</b><span class="lv">Advanced</span><span class="meter" role="img" aria-label="Tamil: advanced, 5 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+        <li class="lang"><b>Hindi</b><span class="lv">Advanced</span><span class="meter" role="img" aria-label="Hindi: advanced, 4 of 5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li>
+        <li class="lang"><b>French</b><span class="lv">Basic</span><span class="meter" role="img" aria-label="French: basic, 2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li>
+        <li class="lang"><b>German</b><span class="lv">Basic</span><span class="meter" role="img" aria-label="German: basic, 2 of 5"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li>
+      </ul>
+    </section>
+
+    <section id="research" aria-labelledby="res-h">
+      <div class="head">
+        <p class="eyebrow">Research, Education &amp; Leadership</p>
+        <h2 id="res-h">Publications, Credentials &amp; Leadership</h2>
+      </div>
+      <div class="groups">
+        <div class="group g-pub">
+          <h3>Publications (IEEE)</h3>
+          <ul class="plain">
+            <li>Accelerated Stock Trend Forecasting Using FAISS-Optimised Machine Learning Architectures Framework
+              <div class="sub"><a href="https://doi.org/10.1109/RAEEUCCI67649.2026.11504754" target="_blank" rel="noopener">10.1109/RAEEUCCI67649.2026.11504754</a></div></li>
+            <li>Water Quality Monitoring and Advisory Systems Using Real-Time Sensors and GPTs for Precision Brackishwater Aquaculture
+              <div class="sub"><a href="https://doi.org/10.1109/IC2E365635.2025.11167875" target="_blank" rel="noopener">10.1109/IC2E365635.2025.11167875</a></div></li>
+            <li>Early Melanoma Detection and Classification Using CNN and Confusion Matrix Analysis
+              <div class="sub"><a href="https://doi.org/10.1109/ICSCAN62807.2024.10894452" target="_blank" rel="noopener">10.1109/ICSCAN62807.2024.10894452</a></div></li>
+          </ul>
+        </div>
+        <div class="group g-cert">
+          <h3>Certifications</h3>
+          <ul class="plain">
+            <li>Responsible and Safe AI Systems<div class="sub">NPTEL (IIT Madras and IIIT Hyderabad)</div></li>
+            <li>MongoDB Administration<div class="sub">Infosys Springboard</div></li>
+            <li>MongoDB for SQL Experts<div class="sub">MongoDB</div></li>
+            <li>Cloud Foundations, Machine Learning Foundations<div class="sub">AWS Academy Graduate</div></li>
+          </ul>
+        </div>
+        <div class="group g-edu">
+          <h3>Education</h3>
+          <ul class="plain">
+            <li>B.Tech in AI &amp; ML, CGPA 9.0<div class="sub">Vel Tech R&amp;D Institute of Science and Technology, Chennai · 2023 – 2026</div></li>
+            <li>Diploma in Mechanical Engineering, CGPA 8.2<div class="sub">Sri Venkateswara Government Polytechnic College, Tirupati · 2020 – 2023</div></li>
+          </ul>
+        </div>
+        <div class="group g-lead">
+          <h3>Leadership</h3>
+          <ul class="plain">
+            <li>Chair, IEEE Systems, Man and Cybernetics Society (10+ students) and Vice Chair, Computer Society (50+ students); 50+ events and workshops organised.</li>
+            <li>Lead Organiser, Fusion Forge national hackathon (150+ teams).</li>
+            <li>Student Ambassador (International Relations), Vel Tech R&amp;D.</li>
+            <li>Winner, Protiyogita 2024 Idea Contest (30+ teams); first place, Ilizaim 2025 debate.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <div class="head">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-h">Start a Conversation</h2>
+      </div>
+      <div class="contact">
+        <div>
+          <p style="max-width:44ch;color:var(--muted)">Reach out directly via email, phone, or LinkedIn, or leave a note below.</p>
+          <div class="lines">
+            <div class="line"><span class="k">Email</span><span class="v"><a href="mailto:akshayreddeppapulikandla@gmail.com">akshayreddeppapulikandla@gmail.com</a></span><button class="copy" type="button" data-copy="akshayreddeppapulikandla@gmail.com">Copy</button></div>
+            <div class="line"><span class="k">Phone</span><span class="v"><a href="tel:+919133498456">+91 91334 98456</a></span><button class="copy" type="button" data-copy="+91 91334 98456">Copy</button></div>
+            <div class="line"><span class="k">LinkedIn</span><span class="v"><a href="https://linkedin.com/in/akshayreddeppa" target="_blank" rel="noopener">linkedin.com/in/akshayreddeppa</a></span></div>
+            <div class="line"><span class="k">Base</span><span class="v">Chennai, India</span></div>
+          </div>
+        </div>
+        <form id="inq" novalidate>
+          <div class="field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" required placeholder="What would you like to discuss?"></textarea>
+          </div>
+          <div><button class="btn primary" type="submit" id="f-submit">Send message</button></div>
+          <div id="f-out" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-cta">
+      <p>Building production AI or scaling data-driven operations? Let's connect.</p>
+      <div class="actions">
+        <a class="btn primary" href="#contact">Contact</a>
+        <a class="btn js-view" href="Akshay_Reddeppa_Resume.pdf" target="_blank" rel="noopener">View Resume (PDF)</a>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>Akshay Reddeppa Pulikandla · AI Engineer</span>
+      <span>Chennai, India</span>
+    </div>
+  </footer>
+</div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Resume" hidden>
+  <div class="viewer-box">
+    <div class="viewer-bar">
+      <b>Resume: Akshay Reddeppa Pulikandla</b>
+      <a class="btn sm hdr-btn" id="viewer-dl" href="Akshay_Reddeppa_Resume.pdf" target="_blank" rel="noopener">Download</a>
+      <button class="btn sm" type="button" id="viewer-close">Close</button>
+    </div>
+    <div class="viewer-body">
+      <img src="resume-p-1.jpg" alt="Resume page 1: profile, work experience and projects of Akshay Reddeppa Pulikandla" width="1300" height="1839" loading="lazy">
+      <img src="resume-p-2.jpg" alt="Resume page 2: education, skills, publications and leadership of Akshay Reddeppa Pulikandla" width="1300" height="1839" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<div class="jump" aria-label="Quick links">
+  <a class="resume-tab js-view" href="Akshay_Reddeppa_Resume.pdf" target="_blank" rel="noopener" aria-label="View resume"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M7 3h7l5 5v13H7z M14 3v5h5 M10 13h6 M10 17h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg><span>Resume</span></a>
+  <button type="button" id="to-top" aria-label="Scroll to top"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button type="button" id="to-bottom" aria-label="Scroll to bottom"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+</div>
+
+<script>
+(function () {
+  var EMAIL = "akshayreddeppapulikandla@gmail.com";
+  var PDF = "Akshay_Reddeppa_Resume.pdf";
+
+  function flash(btn, text) {
+    var old = btn.textContent; btn.textContent = text;
+    setTimeout(function () { btn.textContent = old; }, 1400);
+  }
+  function selectNode(node) {
+    try { var r = document.createRange(); r.selectNodeContents(node); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+  }
+
+  // profile photo: shows only when profile-photo.jpg is published with the page
+  (function () {
+    var img = document.getElementById("photo");
+    var initials = document.getElementById("initials");
+    var probe = new Image();
+    probe.onload = function () { img.src = probe.src; img.hidden = false; initials.hidden = true; };
+    probe.src = "profile-photo.jpg";
+  })();
+
+  document.querySelectorAll(".copy").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var text = b.getAttribute("data-copy");
+      var done = function () { flash(b, "Copied"); };
+      var fail = function () { selectNode(b.previousElementSibling); flash(b, "Select + copy"); };
+      try { navigator.clipboard.writeText(text).then(done, fail); } catch (e) { fail(); }
+    });
+  });
+
+  // quick scroll bubbles
+  var up = document.getElementById("to-top");
+  var down = document.getElementById("to-bottom");
+  var reduce = false;
+  try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+  function go(y) { try { window.scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" }); } catch (e) { window.scrollTo(0, y); } }
+  up.addEventListener("click", function () { go(0); });
+  down.addEventListener("click", function () { go(document.documentElement.scrollHeight); });
+  function sync() {
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    up.classList.toggle("dim", y < 40);
+    down.classList.toggle("dim", y > max - 40);
+  }
+  window.addEventListener("scroll", sync, { passive: true });
+  window.addEventListener("resize", sync);
+  sync();
+
+  // resume viewer: shows the resume pages in a window on the page
+  var viewer = document.getElementById("viewer");
+  var lastFocus = null;
+  function openViewer(ev) {
+    if (ev) ev.preventDefault();
+    lastFocus = document.activeElement;
+    viewer.hidden = false;
+    document.getElementById("viewer-close").focus();
+  }
+  function closeViewer() { viewer.hidden = true; if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} } }
+  document.querySelectorAll(".js-view").forEach(function (a) { a.addEventListener("click", openViewer); });
+  document.getElementById("viewer-close").addEventListener("click", closeViewer);
+  viewer.addEventListener("click", function (e) { if (e.target === viewer) closeViewer(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !viewer.hidden) closeViewer(); });
+
+  // download from inside the resume window: saves directly when the viewer allows it, otherwise opens the PDF in a new tab
+  var dlApi = null;
+  (async function () {
+    try { dlApi = window.claude && claude.use ? await claude.use("downloads") : null; } catch (e) { dlApi = null; }
+  })();
+  var dlBtn = document.getElementById("viewer-dl");
+  dlBtn.addEventListener("click", async function (ev) {
+    if (!dlApi) return;
+    ev.preventDefault();
+    try {
+      var res = await fetch(PDF);
+      if (!res.ok) throw new Error("fetch");
+      await dlApi.save({ filename: "Akshay_Reddeppa_Resume.pdf", data: await res.blob() });
+      flash(dlBtn, "Saved");
+    } catch (e) {
+      flash(dlBtn, (e && e.code === "declined") ? "Cancelled" : "Opening PDF");
+      if (!e || e.code !== "declined") { try { window.open(PDF, "_blank", "noopener"); } catch (x) {} }
+    }
+  });
+
+  // message form: only the message is required
+  var form = document.getElementById("inq");
+  var out = document.getElementById("f-out");
+  var submit = document.getElementById("f-submit");
+  var msgField = document.getElementById("f-msg");
+  var SUBJECT = "Message from your portfolio";
+
+  function setOut(node) { out.textContent = ""; if (node) out.appendChild(node); }
+  function msg(text, ok) {
+    var d = document.createElement("div"); d.className = "msg" + (ok ? " ok" : ""); d.textContent = text; return d;
+  }
+  function link(label, href, primary) {
+    var a = document.createElement("a"); a.className = "btn" + (primary ? " primary" : ""); a.textContent = label;
+    a.href = href; if (/^https/.test(href)) { a.target = "_blank"; a.rel = "noopener"; } return a;
+  }
+  function mailLinks(text) {
+    var su = encodeURIComponent(SUBJECT), bo = encodeURIComponent(text), to = encodeURIComponent(EMAIL);
+    return {
+      app: "mailto:" + EMAIL + "?subject=" + su + "&body=" + bo,
+      gmail: "https://mail.google.com/mail/?view=cm&fs=1&to=" + to + "&su=" + su + "&body=" + bo,
+      outlook: "https://outlook.live.com/mail/0/deeplink/compose?to=" + to + "&subject=" + su + "&body=" + bo
+    };
+  }
+
+  function showPanel(text, saved) {
+    var L = mailLinks(text);
+    var wrap = msg((saved ? "Message saved. " : "") + "Your email app should open with " + EMAIL + " in the To field and your message in the body. If nothing opened, pick your mail service below and press Send there.", saved);
+    var row = document.createElement("div"); row.className = "mail-btns";
+    var app = link("Open in email app", L.app, true);
+    row.appendChild(app);
+    row.appendChild(link("Open in Gmail", L.gmail, false));
+    row.appendChild(link("Open in Outlook", L.outlook, false));
+    var c = document.createElement("button"); c.type = "button"; c.className = "btn"; c.textContent = "Copy message";
+    c.addEventListener("click", function () {
+      var done = function () { flash(c, "Copied"); };
+      var fail = function () { flash(c, "Select the text and copy"); };
+      try { navigator.clipboard.writeText(text).then(done, fail); } catch (e) { fail(); }
+    });
+    row.appendChild(c);
+    wrap.appendChild(row);
+    setOut(wrap);
+    return L;
+  }
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var text = msgField.value.trim();
+    if (!text) { setOut(msg("Write a message, then send it.", false)); msgField.focus(); return; }
+    // open the mail app immediately, inside the click, so the browser allows it
+    var L = showPanel(text, false);
+    try {
+      var a = document.createElement("a"); a.href = L.app; a.style.display = "none";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    } catch (e) {}
+    // also keep a copy in the page inbox when the viewer allows it
+    (async function () {
+      try {
+        var db = window.claude && claude.use ? await claude.use("db") : null;
+        if (db) { await db.collection("inquiries").add({ message: text, createdAt: new Date().toISOString() }); showPanel(text, true); }
+      } catch (e) {}
+    })();
+  });
+})();
+</script>
+
+</body>
+</html>
